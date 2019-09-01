@@ -37,7 +37,7 @@ enum DrawStatus {
   drawed,
 };
 
-class Canvas
+class Canvas : public QWidget
 {
 public:
     Canvas(QWidget *parent = 0);
@@ -80,9 +80,52 @@ private:
     QPointF pointE;
     RectPaint shotArea; // 截图区域
 
+    QList<LinePaint> lineList;
+    QList<RectPaint> rectList;
+    QList<RectPaint> ellipseList;
+    QList<TextPaint *> textList;
 
+    QPointF pointDrag;
 
+    DrawStatus rectFlag = DrawStatus::waitDraw;
 
+    quint8 drawEditFlag = 0;
+    QPixmap fullPixmap;
+    QPixmap originalPixmap;
+
+    QWidget *toolbar;
+    QPushButton *btn_saveFile;
+    QPushButton *btn_saveClipboard;
+    QPushButton *btn_cancel;
+    QPushButton *btn_drawLine;
+    QPushButton *btn_drawRect;
+    QPushButton *btn_drawEllipse;
+    QPushButton *btn_drawText;
+
+    QPen drawPen;
+    QWidget *shapeToolBar;
+    QWidget *textToolBar;
+
+    int toolBarWidth;
+    int toolBarHeight;
+
+    QComboBox *cbx_lineSize;
+    QPushButton *btn_colorSelect;
+    QComboBox *cbx_lineStyle;
+
+    QPushButton *btn_colorText;
+    QPushButton *btn_FontText;
+    QColor textColor;
+    QFont textfont;
+
+    QClipboard *clipboard;
+
+    quint8 cursorCaptureFlag = 0;
+
+    void mousePressEvent(QMouseEvent *e);
+    void mouseMoveEvent(QMouseEvent *e);
+    void mouseReleaseEvent(QMouseEvent *e);
+    void paintEvent(QPaintEvent *e);
 };
 
 #endif // CANVAS_H

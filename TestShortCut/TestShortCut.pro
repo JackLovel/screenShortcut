@@ -24,13 +24,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
+    linepaint.cpp \
         mainwindow.cpp \
     keystring.cpp \
-    canvas.cpp
+    canvas.cpp \
+    operateset.cpp \
+    rectpaint.cpp \
+    textpaint.cpp
 
 HEADERS  += mainwindow.h \
     keystring.h \
-    canvas.h
+    canvas.h \
+    linepaint.h \
+    operateset.h \
+    rectpaint.h \
+    textpaint.h
 
 FORMS    += mainwindow.ui
 
@@ -39,6 +47,9 @@ include(QHotkey/qhotkey.pri)
 SUBDIRS += \
     QHotkey/QHotkey.pro \
     QHotkey/QHotkey.pro
+
+RESOURCES += \
+    resouce.qrc
 
 
 
